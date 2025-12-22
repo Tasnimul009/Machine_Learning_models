@@ -20,8 +20,8 @@ fig, ax = plt.subplots(figsize=(9, 5))
 scatter = ax.scatter(X[:, 0], X[:, 1], c=y, cmap='viridis', s=100, edgecolor='k')
 
 
-def step(x):
-    return 1 if x >= 0 else 0
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
 
 def perceptron(X, y, lr=0.01, epochs=1000):
     m_list = []
@@ -34,7 +34,7 @@ def perceptron(X, y, lr=0.01, epochs=1000):
     for _ in range(epochs):
         i = np.random.randint(0, X_aug.shape[0])
         z = np.dot(weights, X_aug[i])
-        y_hat = step(z)
+        y_hat = sigmoid(z)
         error = y[i] - y_hat
         weights += lr * error * X_aug[i]
         slope = -weights[1] / weights[2]
