@@ -1,0 +1,1 @@
+'feature1' : X[:, 0], 'feature2' : X[:, 1], 'target' : X[:, -1]
